@@ -1,13 +1,13 @@
 # Search movies app with TMDB database
 
 ## Technology stack:
-*[Nuxt](https://nuxtjs.org)
-*[Vuex](https://vuex.vuejs.org/)
-*[Vue-router](https://router.vuejs.org/)
-*[Vuetify](https://vuetifyjs.com/en/)
-*[Vue-awesome-swiper](https://github.com/surmon-china/vue-awesome-swiper)
-*[Axios](https://axios.nuxtjs.org/)
-*[TMDB database](https://developers.themoviedb.org/3/getting-started/introduction)
+* [Nuxt](https://nuxtjs.org) 
+* [Vuex](https://vuex.vuejs.org/) 
+* [Vue-router](https://router.vuejs.org/) 
+* [Vuetify](https://vuetifyjs.com/en/) 
+* [Vue-awesome-swiper](https://github.com/surmon-china/vue-awesome-swiper) 
+* [Axios](https://axios.nuxtjs.org/) 
+* [TMDB database](https://developers.themoviedb.org/3/getting-started/introduction) 
 
 
 ## Build Setup
