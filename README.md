@@ -1,6 +1,6 @@
 # Search movies app with TMDB database
 
-##Demo
+## Demo
 
 https://nuxt-search-app.herokuapp.com/nuxt-search-movie/
 
