@@ -4,7 +4,7 @@
       <v-container>
         <div v-if="!search && !isMoviesLoading">
           <h1 class="text-center text-uppercase">
-            {{ $store.state.selectFilter.replace("_", " ") }}
+            {{ selectFilter.replace("_", " ") }}
           </h1>
           <v-row>
             <Movie
@@ -50,6 +50,7 @@ export default {
       "searchedMovies",
       "curPage",
       "maxPages",
+      "selectFilter",
       "isMoviesLoading",
     ]),
   },
