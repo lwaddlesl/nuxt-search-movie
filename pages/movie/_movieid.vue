@@ -92,6 +92,8 @@
 
         <h2 class="text-center">Similar movies</h2>
         <Carrusel :movies="similarMovies" />
+        <h2 class="text-center mb-4">Recommendations</h2>
+        <Carrusel :movies="recMovies" />
       </v-container>
     </div>
   </div>
@@ -107,6 +109,7 @@ export default {
       movie: "",
       genres: [],
       similarMovies: [],
+      recMovies: [],
       videos: [],
       images: [],
       loaded: true,
@@ -116,6 +119,7 @@ export default {
     await this.getSingleMovie();
     await this.getSimilarMovie();
     await this.getVideos();
+    await this.getRecMovie();
   },
   head() {
     return {
@@ -162,6 +166,12 @@ export default {
         `https://api.themoviedb.org/3/movie/${this.$route.params.movieid}/similar?api_key=f1dfea0ae51d06d0af3e583914087e6c&language=en-US`
       );
       this.similarMovies = response.data.results;
+    },
+    async getRecMovie() {
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/movie/${this.$route.params.movieid}/recommendations?api_key=f1dfea0ae51d06d0af3e583914087e6c&language=en-US`
+      );
+      this.recMovies = response.data.results;
     },
   },
 };

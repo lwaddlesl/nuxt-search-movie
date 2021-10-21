@@ -17,6 +17,9 @@ export default {
     if (this.$route.query.p) {
       this.$store.commit("setPage", this.$route.query.p);
     }
+    if (this.$route.query.filter) {
+      this.$store.commit("setSelectFilter", this.$route.query.filter);
+    }
     this.getMovies();
   },
 

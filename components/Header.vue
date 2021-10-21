@@ -1,27 +1,24 @@
 <template>
   <div>
     <v-app-bar app flat>
-      <v-btn @click="clear" class="mx-2" fab dark small color="primary">
+      <v-btn @click="clear2" class="mx-2" fab dark small color="primary">
         <v-icon dark> mdi-home </v-icon>
       </v-btn>
       <v-btn
-        color="primary"
-        v-if="$store.state.selectFilter != 'popular'"
-        @click="filterPopular"
+        :color="$store.state.selectFilter == 'popular' ? 'red' : 'primary'"
+        @click="filter('popular')"
         class="mx-2"
         >Popular</v-btn
       >
       <v-btn
-        color="primary"
-        v-if="$store.state.selectFilter != 'top_rated'"
-        @click="filterTopRated"
+        :color="$store.state.selectFilter == 'top_rated' ? 'red' : 'primary'"
+        @click="filter('top_rated')"
         class="mx-2"
         >Top rated</v-btn
       >
       <v-btn
-        color="primary"
-        v-if="$store.state.selectFilter != 'upcoming'"
-        @click="filterUpcoming"
+        :color="$store.state.selectFilter == 'upcoming' ? 'red' : 'primary'"
+        @click="filter('upcoming')"
         class="mx-2"
         >Upcoming</v-btn
       >
@@ -52,40 +49,22 @@ export default {
   },
   methods: {
     ...mapActions(["searchMovies", "getMovies"]),
-    ...mapMutations({ c: "clear" }),
-    clear() {
-      this.c();
+    ...mapMutations(["clear"]),
+    clear2() {
+      this.clear();
       this.$router.push({ path: "/" });
-      this.getMovies;
+      this.getMovies();
     },
-    filterPopular() {
-      if (this.$store.state.selectFilter != "popular") {
-        this.c();
-        this.$store.commit("setSelectFilter", "popular");
+    filter(selected) {
+      if (this.$store.state.selectFilter != selected) {
+        this.$store.commit("setSelectFilter", selected);
         this.$router.push({
           query: { filter: this.$store.state.selectFilter },
         });
+        this.clear();
         this.getMovies();
-      }
-    },
-    filterTopRated() {
-      if (this.$store.state.selectFilter != "top_rated") {
-        this.c();
-        this.$store.commit("setSelectFilter", "top_rated");
-        this.$router.push({
-          query: { filter: this.$store.state.selectFilter },
-        });
-        this.getMovies();
-      }
-    },
-    filterUpcoming() {
-      if (this.$store.state.selectFilter != "upcoming") {
-        this.c();
-        this.$store.commit("setSelectFilter", "upcoming");
-        this.$router.push({
-          query: { filter: this.$store.state.selectFilter },
-        });
-        this.getMovies();
+      } else {
+        this.clear();
       }
     },
 

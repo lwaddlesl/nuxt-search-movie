@@ -84,12 +84,6 @@ export const mutations = {
     setSelectFilter(state, selectFilter) {
         state.selectFilter = selectFilter
     },
-    next(state) {
-        state.curPage++
-    },
-    prev(state) {
-        state.curPage--
-    },
     getSearch(state, search) {
         state.search = search
     },
