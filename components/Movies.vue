@@ -1,8 +1,16 @@
 <template>
-  <div>
+  <main>
     <v-main>
       <v-container>
         <div v-if="!search && !isMoviesLoading">
+          <v-select
+            @change="filter(value)"
+            class="select ma-6"
+            v-model="value"
+            :items="['top_rated', 'popular', 'upcoming']"
+            attach
+            label="Filter"
+          ></v-select>
           <h1 class="text-center text-uppercase">
             {{ selectFilter.replace("_", " ") }}
           </h1>
@@ -37,10 +45,10 @@
         ></v-pagination>
       </v-container>
     </v-main>
-  </div>
+  </main>
 </template>
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapMutations } from "vuex";
 
 export default {
   computed: {
@@ -54,6 +62,11 @@ export default {
       "isMoviesLoading",
     ]),
   },
+  data() {
+    return {
+      value: "",
+    };
+  },
   mounted() {
     if (this.$route.query.p) {
       this.page = Number(this.$route.query.p);
@@ -65,6 +78,8 @@ export default {
 
   methods: {
     ...mapActions(["getMovies"]),
+    ...mapMutations(["clear"]),
+
     next(page) {
       this.$store.commit("setPage", page);
       this.getMovies();
@@ -73,8 +88,28 @@ export default {
         query: { p: this.curPage },
       });
     },
+    filter(selected) {
+      if (this.$store.state.selectFilter != selected) {
+        this.$store.commit("setSelectFilter", selected);
+        this.$router.push({
+          query: { filter: this.$store.state.selectFilter },
+        });
+        this.clear();
+        this.getMovies();
+      } else {
+        this.clear();
+      }
+    },
   },
 };
 </script>
 <style scoped>
+.select {
+  display: none;
+}
+@media screen and (max-width: 760px) {
+  .select {
+    display: block;
+  }
+}
 </style>

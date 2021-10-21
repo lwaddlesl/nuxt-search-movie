@@ -4,10 +4,11 @@
       <div v-if="loaded"><Loading /></div>
       <v-container v-else>
         <v-btn @click="clear">Home</v-btn>
-        <div class="d-flex mt-4">
+        <div class="main d-flex mt-4">
           <div class="left">
             <div class="img">
               <img
+                class="main-img"
                 :src="`https://image.tmdb.org/t/p/w400/${movie.poster_path}`"
                 :alt="movie.title"
               />
@@ -77,7 +78,7 @@
           <div v-for="(video, index) in videos" :key="index">
             <div class="text-center">
               <iframe
-                class="mt-6"
+                class="video-size mt-6"
                 width="560"
                 height="315"
                 :src="`https://www.youtube.com/embed/${video.key}`"
@@ -176,3 +177,29 @@ export default {
   },
 };
 </script>
+
+<style>
+@media screen and (max-width: 1000px) {
+  .main {
+    flex-direction: column;
+  }
+  .left {
+    text-align: center;
+  }
+  .main-img {
+    width: 300px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .video-size {
+    width: 400px;
+    height: auto;
+  }
+}
+@media screen and (max-width: 430px) {
+  .video-size {
+    width: 320px;
+    height: auto;
+  }
+}
+</style>

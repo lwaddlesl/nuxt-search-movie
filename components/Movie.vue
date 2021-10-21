@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="4">
+  <v-col>
     <div v-if="movie.poster_path" class="movie">
       <v-hover>
         <template v-slot:default="{ hover }">

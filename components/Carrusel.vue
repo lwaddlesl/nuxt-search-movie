@@ -37,22 +37,22 @@ export default {
         slidesPerView: 6,
         spaceBetween: 20,
         pagination: {
-          el: '.swiper-pagination',
+          el: ".swiper-pagination",
           clickable: true,
         },
         keyboard: {
           enabled: true,
         },
         navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
         },
         breakpoints: {
           1300: {
             slidesPerView: 5,
             spaceBetween: 50,
           },
-          1024: {
+          1001: {
             slidesPerView: 4,
             spaceBetween: 40,
           },
@@ -60,7 +60,7 @@ export default {
             slidesPerView: 3,
             spaceBetween: 30,
           },
-          640: {
+          450: {
             slidesPerView: 2,
             spaceBetween: 20,
           },
@@ -70,7 +70,9 @@ export default {
           },
         },
       },
-    }
+    };
   },
-}
+};
 </script>
+<style scoped>
+</style>

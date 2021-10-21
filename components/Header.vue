@@ -1,27 +1,29 @@
 <template>
-  <div>
+  <header>
     <v-app-bar app flat>
-      <v-btn @click="clear2" class="mx-2" fab dark small color="primary">
+      <v-btn @click="clear2" class="mx-2" fab small color="primary">
         <v-icon dark> mdi-home </v-icon>
       </v-btn>
-      <v-btn
-        :color="$store.state.selectFilter == 'popular' ? 'red' : 'primary'"
-        @click="filter('popular')"
-        class="mx-2"
-        >Popular</v-btn
-      >
-      <v-btn
-        :color="$store.state.selectFilter == 'top_rated' ? 'red' : 'primary'"
-        @click="filter('top_rated')"
-        class="mx-2"
-        >Top rated</v-btn
-      >
-      <v-btn
-        :color="$store.state.selectFilter == 'upcoming' ? 'red' : 'primary'"
-        @click="filter('upcoming')"
-        class="mx-2"
-        >Upcoming</v-btn
-      >
+      <div class="header-buttons">
+        <v-btn
+          :color="$store.state.selectFilter == 'popular' ? 'red' : 'primary'"
+          @click="filter('popular')"
+          class="mx-2"
+          >Popular</v-btn
+        >
+        <v-btn
+          :color="$store.state.selectFilter == 'top_rated' ? 'red' : 'primary'"
+          @click="filter('top_rated')"
+          class="mx-2"
+          >Top rated</v-btn
+        >
+        <v-btn
+          :color="$store.state.selectFilter == 'upcoming' ? 'red' : 'primary'"
+          @click="filter('upcoming')"
+          class="mx-2"
+          >Upcoming</v-btn
+        >
+      </div>
       <v-text-field
         :value="search"
         @keyup.enter="getSearch"
@@ -36,7 +38,7 @@
         persistent-hint
       ></v-switch>
     </v-app-bar>
-  </div>
+  </header>
 </template>
 
 <script>
@@ -80,4 +82,9 @@ export default {
 </script>
 
 <style>
+@media screen and (max-width: 760px) {
+  .header-buttons {
+    display: none;
+  }
+}
 </style>
