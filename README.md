@@ -1,5 +1,9 @@
 # Search movies app with TMDB database
 
+## Demo
+
+https://nuxt-search-app.herokuapp.com/nuxt-search-movie/
+
 ## Technology stack:
 * [Nuxt](https://nuxtjs.org) 
 * [Vuex](https://vuex.vuejs.org/) 
