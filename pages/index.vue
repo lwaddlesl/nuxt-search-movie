@@ -2,6 +2,7 @@
   <div>
     <Header />
     <Movies />
+    <Footer v-if="!$store.state.isMoviesLoading" />
   </div>
 </template>
 

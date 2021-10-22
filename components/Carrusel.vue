@@ -3,7 +3,6 @@
     <div class="swiper-wrapper">
       <div v-for="(movie, index) in movies" :key="index" class="swiper-slide">
         <nuxt-link
-          class="movie-link"
           :to="{
             name: 'movie-movieid',
             params: { movieid: movie.id },
@@ -11,6 +10,7 @@
         >
           <div class="text-center" v-if="movie.poster_path">
             <img
+              class="movie-img"
               :src="`https://image.tmdb.org/t/p/w200/${movie.poster_path}`"
               :alt="movie.title"
             />
