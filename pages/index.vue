@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header />
+    <Header v-if="!$store.state.isMoviesLoading" />
     <Movies />
     <Footer v-if="!$store.state.isMoviesLoading" />
   </div>
