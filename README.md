@@ -2,7 +2,7 @@
 
 ## Demo
 
-https://nuxt-search-app.herokuapp.com/nuxt-search-movie/
+http://nuxt-search-app.herokuapp.com/nuxt-search-movie/
 
 ## Technology stack:
 * [Nuxt](https://nuxtjs.org) 
