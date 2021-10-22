@@ -9,13 +9,13 @@
             params: { castid: movie.id },
           }"
         >
-          <div v-if="movie.profile_path">
+          <div class="text-center" v-if="movie.profile_path">
             <img
               :src="`https://image.tmdb.org/t/p/w200/${movie.profile_path}`"
               :alt="movie.title"
             />
           </div>
-          <div v-else>
+          <div class="text-center" v-else>
             <img
               width="200px"
               class="mt-10 mb-15"

@@ -9,13 +9,13 @@
             params: { movieid: movie.id },
           }"
         >
-          <div v-if="movie.poster_path">
+          <div class="text-center" v-if="movie.poster_path">
             <img
               :src="`https://image.tmdb.org/t/p/w200/${movie.poster_path}`"
               :alt="movie.title"
             />
           </div>
-          <div v-else>
+          <div class="text-center" v-else>
             <img
               width="200px"
               src="../assets/img/not-found.png"

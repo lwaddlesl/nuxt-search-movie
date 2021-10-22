@@ -101,7 +101,6 @@
         </div>
         <div class="text-center mb-10">
           <v-btn class="mt-4 mr-8" @click="showVideo">Video</v-btn>
-          <v-btn class="mt-4" @click="showImage">Photo</v-btn>
         </div>
         <div class="video d-none">
           <p class="headline">Videos:</p>
