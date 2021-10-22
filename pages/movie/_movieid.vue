@@ -6,10 +6,18 @@
         <v-btn @click="clear">Home</v-btn>
         <div class="main d-flex mt-4">
           <div class="left">
-            <div class="img">
+            <div v-if="movie.poster_path">
               <img
                 class="main-img"
                 :src="`https://image.tmdb.org/t/p/w400/${movie.poster_path}`"
+                :alt="movie.title"
+              />
+            </div>
+            <div v-else>
+              <img
+                width="400px"
+                class="main-img"
+                src="../../assets/img/not-found.png"
                 :alt="movie.title"
               />
             </div>
@@ -21,10 +29,21 @@
             <h3>About movie:</h3>
             <div class="discription__item">
               <span class="indigo--text">Genres:</span>
-              <span v-for="(g, index) in genres" :key="index" class="genres">
-                <v-chip>{{ g + " " }}</v-chip>
+              <span v-for="(g, index) in genres" :key="index">
+                <v-chip label class="mt-3 mr-3">{{ g }}</v-chip>
               </span>
             </div>
+
+            <div class="discription__item">
+              <span class="indigo--text">Production companies:</span>
+              <span
+                v-for="(c, index) in movie.production_companies"
+                :key="index"
+              >
+                <v-chip label class="mt-3 mr-3">{{ c.name }}</v-chip>
+              </span>
+            </div>
+
             <div class="discription__item">
               <span class="indigo--text">Overview:</span>
               {{ movie.overview }}
@@ -40,8 +59,21 @@
               {{ movie.release_date }}
             </div>
             <div class="discription__item">
+              <span class="indigo--text">budget:</span>
+              {{
+                movie.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              }}$
+            </div>
+            <div class="discription__item">
+              <span class="indigo--text">revenue:</span>
+              {{
+                movie.revenue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              }}$
+            </div>
+            <div class="discription__item">
               <span class="indigo--text">Runtime:</span>
-              {{ movie.runtime }} min
+              {{ movie.runtime }}
+              min
             </div>
             <div class="discription__item">
               <span class="indigo--text">Vote average:</span>
@@ -95,6 +127,8 @@
         <Carrusel :movies="similarMovies" />
         <h2 class="text-center mb-4">Recommendations</h2>
         <Carrusel :movies="recMovies" />
+        <h2 class="text-center mb-4">Cast</h2>
+        <CarruselCast :movies="cast" />
       </v-container>
     </div>
   </div>
@@ -113,6 +147,7 @@ export default {
       recMovies: [],
       videos: [],
       images: [],
+      cast: [],
       loaded: true,
     };
   },
@@ -121,6 +156,7 @@ export default {
     await this.getSimilarMovie();
     await this.getVideos();
     await this.getRecMovie();
+    await this.getCast();
   },
   head() {
     return {
@@ -155,12 +191,18 @@ export default {
     //   this.images = response.data.results;
     //   this.loaded = false;
     // },
+    async getCast() {
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/movie/${this.$route.params.movieid}/credits?api_key=f1dfea0ae51d06d0af3e583914087e6c&language=en-US`
+      );
+      this.cast = response.data.cast;
+      this.loaded = false;
+    },
     async getVideos() {
       const response = await axios.get(
         `https://api.themoviedb.org/3/movie/${this.$route.params.movieid}/videos?api_key=f1dfea0ae51d06d0af3e583914087e6c&language=en-US`
       );
       this.videos = response.data.results;
-      this.loaded = false;
     },
     async getSimilarMovie() {
       const response = await axios.get(

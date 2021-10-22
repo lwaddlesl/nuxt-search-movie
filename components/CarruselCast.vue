@@ -5,24 +5,27 @@
         <nuxt-link
           class="movie-link"
           :to="{
-            name: 'movie-movieid',
-            params: { movieid: movie.id },
+            name: 'cast-castid',
+            params: { castid: movie.id },
           }"
         >
-          <div v-if="movie.poster_path">
+          <div v-if="movie.profile_path">
             <img
-              :src="`https://image.tmdb.org/t/p/w200/${movie.poster_path}`"
+              :src="`https://image.tmdb.org/t/p/w200/${movie.profile_path}`"
               :alt="movie.title"
             />
           </div>
           <div v-else>
             <img
               width="200px"
+              class="mt-10 mb-15"
               src="../assets/img/not-found.png"
               :alt="movie.title"
             />
           </div>
         </nuxt-link>
+        <p class="text-center">{{ movie.name }}</p>
+        <p class="text-center grey--text">{{ movie.character }}</p>
       </div>
     </div>
     <div class="swiper-button-prev" slot="button-prev"></div>

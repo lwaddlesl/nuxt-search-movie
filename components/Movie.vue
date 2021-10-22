@@ -1,13 +1,22 @@
 <template>
   <v-col>
-    <div v-if="movie.poster_path" class="movie">
+    <div class="movie">
       <v-hover>
         <template v-slot:default="{ hover }">
           <v-card class="mx-auto" height="750" max-width="300">
-            <img
-              :src="`https://image.tmdb.org/t/p/w300/${movie.poster_path}`"
-              :alt="movie.title"
-            />
+            <div v-if="movie.poster_path">
+              <img
+                :src="`https://image.tmdb.org/t/p/w300/${movie.poster_path}`"
+                :alt="movie.title"
+              />
+            </div>
+            <div v-else>
+              <img
+                width="300px"
+                src="../assets/img/not-found.png"
+                :alt="movie.title"
+              />
+            </div>
 
             <v-card-text>
               <h2 class="text-h6 primary--text">{{ movie.title }}</h2>
