@@ -11,7 +11,7 @@
 </template>
 
 <script>
-export default {}
+export default {};
 </script>
 
 <style scoped>
@@ -187,6 +187,18 @@ export default {}
     -o-transform: rotate(-180deg);
     transform: rotate(-180deg);
     opacity: 0;
+  }
+}
+@media screen and (max-width: 650px) {
+  #load {
+    width: 300px;
+    margin-left: -150px;
+  }
+}
+@media screen and (max-width: 340px) {
+  #load {
+    width: 250px;
+    margin-left: -125px;
   }
 }
 </style>
