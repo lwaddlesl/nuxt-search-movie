@@ -173,8 +173,6 @@ export default {
       video.classList.toggle("d-none");
     },
 
-    showImage() {},
-
     async getSingleMovie() {
       this.loaded = true;
       const response = await axios.get(
@@ -183,13 +181,6 @@ export default {
       this.movie = response.data;
       this.movie.genres.forEach((g) => this.genres.push(g.name));
     },
-    // async getImages() {
-    //   const response = await axios.get(
-    //     `https://api.themoviedb.org/3/movie/${this.$route.params.movieid}/images?api_key=f1dfea0ae51d06d0af3e583914087e6c&language=en-US`
-    //   );
-    //   this.images = response.data.results;
-    //   this.loaded = false;
-    // },
     async getCast() {
       const response = await axios.get(
         `https://api.themoviedb.org/3/movie/${this.$route.params.movieid}/credits?api_key=f1dfea0ae51d06d0af3e583914087e6c&language=en-US`

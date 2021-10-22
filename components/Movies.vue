@@ -36,6 +36,7 @@
         </div>
 
         <v-pagination
+          class="mt-4"
           v-if="!isMoviesLoading && maxPages > 1"
           v-model="curPage"
           :length="maxPages"
