@@ -175,35 +175,60 @@ export default {
 
     async getSingleMovie() {
       this.loaded = true;
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${this.$route.params.movieid}?api_key=f1dfea0ae51d06d0af3e583914087e6c&language=en-US`
-      );
+      const response = await axios({
+        url: `/movie/${this.$route.params.movieid}`,
+        baseURL: this.$store.state.URL,
+        params: {
+          api_key: this.$store.state.APIKEY,
+          language: "en-US",
+        },
+      });
       this.movie = response.data;
       this.movie.genres.forEach((g) => this.genres.push(g.name));
     },
     async getCast() {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${this.$route.params.movieid}/credits?api_key=f1dfea0ae51d06d0af3e583914087e6c&language=en-US`
-      );
+      const response = await axios({
+        url: `/movie/${this.$route.params.movieid}/credits`,
+        baseURL: this.$store.state.URL,
+        params: {
+          api_key: this.$store.state.APIKEY,
+          language: "en-US",
+        },
+      });
       this.cast = response.data.cast;
       this.loaded = false;
     },
     async getVideos() {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${this.$route.params.movieid}/videos?api_key=f1dfea0ae51d06d0af3e583914087e6c&language=en-US`
-      );
+      const response = await axios({
+        url: `/movie/${this.$route.params.movieid}/videos`,
+        baseURL: this.$store.state.URL,
+        params: {
+          api_key: this.$store.state.APIKEY,
+          language: "en-US",
+        },
+      });
       this.videos = response.data.results;
     },
     async getSimilarMovie() {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${this.$route.params.movieid}/similar?api_key=f1dfea0ae51d06d0af3e583914087e6c&language=en-US`
-      );
+      const response = await axios({
+        url: `/movie/${this.$route.params.movieid}/similar`,
+        baseURL: this.$store.state.URL,
+        params: {
+          api_key: this.$store.state.APIKEY,
+          language: "en-US",
+        },
+      });
       this.similarMovies = response.data.results;
     },
     async getRecMovie() {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${this.$route.params.movieid}/recommendations?api_key=f1dfea0ae51d06d0af3e583914087e6c&language=en-US`
-      );
+      const response = await axios({
+        url: `/movie/${this.$route.params.movieid}/recommendations`,
+        baseURL: this.$store.state.URL,
+        params: {
+          api_key: this.$store.state.APIKEY,
+          language: "en-US",
+        },
+      });
       this.recMovies = response.data.results;
     },
   },

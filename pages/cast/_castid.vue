@@ -47,7 +47,7 @@
             <div class="discription__item">
               <span class="indigo--text"> Gender:</span>
               <span v-if="person.gender == '2'">Male</span>
-              <spam v-else>Female</spam>
+              <span v-else>Female</span>
             </div>
             <div class="discription__item">
               <span class="indigo--text">Biography:</span>
@@ -112,22 +112,37 @@ export default {
     },
 
     async getSingleperson() {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/person/${this.$route.params.castid}?api_key=f1dfea0ae51d06d0af3e583914087e6c&language=en-US`
-      );
+      const response = await axios({
+        url: `/person/${this.$route.params.castid}`,
+        baseURL: this.$store.state.URL,
+        params: {
+          api_key: this.$store.state.APIKEY,
+          language: "en-US",
+        },
+      });
       this.person = response.data;
     },
     async getPersonMovies() {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/person/${this.$route.params.castid}/movie_credits?api_key=f1dfea0ae51d06d0af3e583914087e6c&language=en-US`
-      );
+      const response = await axios({
+        url: `/person/${this.$route.params.castid}/movie_credits`,
+        baseURL: this.$store.state.URL,
+        params: {
+          api_key: this.$store.state.APIKEY,
+          language: "en-US",
+        },
+      });
       this.movies = response.data;
       this.loaded = false;
     },
     async getImagesMovies() {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/person/${this.$route.params.castid}/images?api_key=f1dfea0ae51d06d0af3e583914087e6c&language=en-US`
-      );
+      const response = await axios({
+        url: `/person/${this.$route.params.castid}/images`,
+        baseURL: this.$store.state.URL,
+        params: {
+          api_key: this.$store.state.APIKEY,
+          language: "en-US",
+        },
+      });
       this.images = response.data.profiles;
     },
   },

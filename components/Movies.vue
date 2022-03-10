@@ -38,7 +38,7 @@
         <v-pagination
           class="mt-4"
           v-if="!isMoviesLoading && maxPages > 1"
-          v-model="curPage"
+          :v-model="+curPage"
           :length="maxPages"
           :total-visible="9"
           circle

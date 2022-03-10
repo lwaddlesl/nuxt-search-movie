@@ -22,17 +22,28 @@ export const actions = {
             commit('setLoading', true)
 
             if (!state.search) {
-                const response = await axios.get(
-                    `${state.URL}/movie/${state.selectFilter}?api_key=${state.APIKEY}&language=en-US&page=${state.curPage}`
-                )
-                commit('setLoading', false)
+                const response = await axios({
+                    url: `/movie/${state.selectFilter}`,
+                    baseURL: state.URL,
+                    params: {
+                        api_key: state.APIKEY,
+                        language: 'en-US',
+                        page: state.curPage
+                    }
+                })
                 commit('setMovies', response.data.results)
                 commit('setMaxPages', response.data.total_pages)
-
             } else {
-                const response = await axios.get(
-                    `${state.URL}/search/movie/?api_key=${state.APIKEY}&language=en-US&page=${state.curPage}&query=${state.search}`
-                )
+                const response = await axios({
+                    url: `/search/movie/`,
+                    baseURL: state.URL,
+                    params: {
+                        api_key: state.APIKEY,
+                        language: 'en-US',
+                        page: state.curPage,
+                        query: state.search,
+                    }
+                })
                 commit('setSearchedMovies', response.data.results)
             }
         } catch (e) {
@@ -47,9 +58,16 @@ export const actions = {
             commit('getSearch', state.search)
             commit('searchClear')
             commit('setLoading', true);
-            const response = await axios.get(
-                `${state.URL}/search/movie/?api_key=${state.APIKEY}&language=en-US&page=${state.curPage}&query=${state.search}`
-            )
+            const response = await axios({
+                url: `/search/movie/`,
+                baseURL: state.URL,
+                params: {
+                    api_key: state.APIKEY,
+                    language: 'en-US',
+                    page: state.curPage,
+                    query: state.search,
+                }
+            })
             commit('setSearchedMovies', response.data.results)
             commit('setMaxPages', response.data.total_pages)
         }
@@ -70,7 +88,7 @@ export const mutations = {
         state.searchedMovies = []
     },
     setMaxPages(state, maxPages) {
-        state.maxPages = maxPages;
+        state.maxPages = maxPages >= 500 ? 500 : maxPages;
     },
     setMovies(state, movies) {
         state.movies = movies;
