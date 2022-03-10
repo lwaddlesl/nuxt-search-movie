@@ -32,7 +32,7 @@ export const actions = {
                     }
                 })
                 commit('setMovies', response.data.results)
-                commit('setMaxPages', response.data.total_pages)
+                commit('setMaxPages', response.data.total_pages >= 500 ? 500 : response.data.total_pages)
             } else {
                 const response = await axios({
                     url: `/search/movie/`,
@@ -69,7 +69,7 @@ export const actions = {
                 }
             })
             commit('setSearchedMovies', response.data.results)
-            commit('setMaxPages', response.data.total_pages)
+            commit('setMaxPages', response.data.total_pages >= 500 ? 500 : response.data.total_pages)
         }
         catch (e) {
             console.log(e)
