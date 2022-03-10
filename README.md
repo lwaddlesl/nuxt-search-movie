@@ -13,6 +13,11 @@ http://nuxt-search-app.herokuapp.com/
 * [Axios](https://axios.nuxtjs.org/) 
 * [TMDB database](https://developers.themoviedb.org/3/getting-started/introduction) 
 
+## Images
+
+1. ![1](https://user-images.githubusercontent.com/48293632/157538598-af174097-6fb5-4010-858f-370d76fd3aff.png)  
+
+2. ![2](https://user-images.githubusercontent.com/48293632/157538610-a41c25ef-a747-48a6-9e6d-bd6db57930c6.png)
 
 ## Build Setup
 
